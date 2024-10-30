@@ -1,0 +1,39 @@
+/* Estilo da barra de menu */
+.menu-bar {
+    display: flex; /* Utiliza flexbox */
+    justify-content: center; /* Centraliza horizontalmente os itens */
+    background-color: #525151; /* Fundo da barra de menu */
+    border-top: 1px solid #ddd; /* Bordas para visualização */
+    padding: 10px 0;
+    position: fixed; /* Mantém a barra fixa na parte inferior */
+    bottom: 0; /* Fica na parte inferior */
+    left: 0;
+    right: 0;
+    width: 100%; /* Garante que o menu ocupe toda a largura */
+    max-width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Adiciona sombra ao menu para destaque */
+    height: 30px;
+}
+
+.menu-icon {
+    width: 30px; /* Tamanho do ícone */
+    font-size: 24px;
+    text-decoration: none;
+    color: #333;
+    margin: 0 50px; /* Espaçamento entre os ícones, se necessário */
+}
+
+.menu-icon img {
+    width: 30px;  /* Ajuste o tamanho conforme necessário */
+    height: 30px;
+    object-fit: contain; /* Mantém a proporção da imagem */
+    border-radius: 8px; /* Opcional: Cantos levemente arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efeito suave */
+  }
+  
+  /* Efeito de hover */
+  .menu-icon img:hover {
+    transform: scale(1.1); /* Leve aumento no tamanho */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Aumenta a sombra no hover */
+  }

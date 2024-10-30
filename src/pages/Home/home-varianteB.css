@@ -1,0 +1,199 @@
+/* home.css */
+/* Estilo global para usar a fonte Poppins */
+body.variant-B {
+    font-family: 'Poppins', sans-serif; /* Define a fonte Poppins como padrão */
+    margin: 0; /* Remove margens padrão do body */
+    padding: 0; /* Remove espaçamento padrão do body */
+    box-sizing: border-box; /* Faz com que o padding e a borda sejam incluídos nas dimensões totais */
+    background-color: #4D4D4D
+  }
+
+/* Estilo do container principal */
+.container.variant-B {
+    min-width: 400px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100vh; /* O container ocupa toda a altura da tela */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: '/assets/img/background2.png';
+    font-family: 'Poppins', sans-serif;
+    position: relative; /* Permite que os filhos usem posicionamento absoluto */
+    margin-bottom: 50px;
+}
+
+/* Estilo do logo */
+.logo-rachai2.variant-B {
+    width: 20px; /* Ajuste o tamanho do logo */
+    margin-bottom: 10px;
+}
+
+/* Estilo da saudação */
+.greeting.variant-B {
+    font-size: 24px; /* Tamanho da fonte para a saudação */
+    color: #fff;
+    margin-bottom: 2px;
+    text-align: left;
+    font-weight: normal;
+    padding-right: 210px;
+
+}
+
+/* Estilo da seção "Suas caronas disponíveis" */
+.available-rides.variant-B {
+    font-size: 15px; /* Tamanho da fonte para o título de caronas disponíveis */
+    color: #fff;
+    margin-bottom: 40px;
+    text-align: left;
+    font-weight: normal;
+    padding-right: 195px;
+    background-color: #CF080F;
+    color: #fff;
+
+}
+/* Estilo da seção "Suas caronas disponíveis" */
+.available-rides2.variant-B {
+    font-size: 15px; /* Tamanho da fonte para o título de caronas disponíveis */
+    margin-bottom: 0px;
+    text-align: left;
+    font-weight: normal;
+    padding-right: 233px;
+    background-color: #CF080F;
+    color: #fff;
+
+}
+
+/* Estilo do cartão de carona */
+.ride-card.variant-B {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Cria espaço entre os elementos */
+    background-color: #CF080F;
+    border: 1px solid #ddd;
+    border-radius: 0; /* Remove bordas arredondadas */
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-height: 80px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra do cartão */
+    position: relative; /* Para posicionar o botão dentro do cartão */
+}
+
+.ride-details.variant-B {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-height: 170px;
+}
+
+/* Estilo da imagem do motorista */
+.driver-image.variant-B {
+    width: 33%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+/* Estilo das informações da carona */
+.ride-info.variant-B {
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+    width: 60%; /* Ajuste para acomodar o botão à direita */
+}
+
+/* Estilo do botão redondo */
+.ride-button.variant-B {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%); /* Centraliza o botão verticalmente */
+    width: 40px;
+    height: 40px;
+    background-color: #255362;
+    border: 2px solid #ddd;
+    border-radius: 50%; /* Torna o botão redondo */
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra do botão */
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Efeito hover para o botão */
+.ride-button:hover.variant-B {
+    transform: translateY(-50%) scale(1.1); /* Aumenta levemente no hover */
+}
+
+/* Estilo da imagem dentro do botão */
+.ride-button.variant-B img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Estilo da lista de motoristas */
+.motorista-list.variant-B {
+    width: 100%;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que a lista cresça e ocupe o espaço disponível */
+    overflow-y: auto; /* Permite rolagem vertical */
+    background-color: #CF080F;
+
+    padding-top: 10px;
+}
+
+.motorista-item.variant-B {
+    display: flex;
+    align-items: center;
+    background-color: #255362;
+    border: 1px solid #ddd;
+    border-radius: 0; /* Remove bordas arredondadas */
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombreado para o motorista */
+    max-height: 100px;
+}
+
+/* Espaçamento para separar a imagem do texto */
+.motorista-info.variant-B {
+    padding-left: 20px;
+    line-height: 40%;  
+    color: #fff;  
+}
+
+/* Estilo da moldura para as imagens dos motoristas */
+.motorista-img.variant-B {
+    width: 100px; /* A imagem ocupa 1/3 do cartão */
+    height: 100%; /* A altura da imagem é igual à altura do cartão */
+    object-fit: cover; /* Mantém a proporção da imagem sem distorcer */
+    display: block;  /* Garante que a imagem se comporte como um bloco */
+    border-radius: 10px; /* Deixa os cantos arredondados (opcional) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
+    transition: box-shadow 0.3s ease-in-out; /* Transição suave na sombra */
+}
+
+.driver-image.variant-B {
+    display: block;  /* Garante que a imagem se comporte como um bloco */
+    max-width: 80px; /* Mantém a imagem responsiva */
+    height: auto;    /* Preserva a proporção da imagem */
+    border-radius: 10px; /* Deixa os cantos arredondados (opcional) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra suave */
+    transition: box-shadow 0.3s ease-in-out; /* Transição suave na sombra */
+  }
+  
+  .driver-image:hover.variant-B {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Aumenta a sombra ao passar o mouse */
+  }
+
+
+
+  

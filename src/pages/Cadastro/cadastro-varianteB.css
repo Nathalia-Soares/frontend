@@ -1,0 +1,136 @@
+/* Estilo global para usar a fonte Poppins */
+body.variant-B {
+  font-family: 'Poppins', sans-serif;
+  /* Define a fonte Poppins como padrão */
+  margin: 0;
+  /* Remove margens padrão do body */
+  padding: 0;
+  /* Remove espaçamento padrão do body */
+  box-sizing: border-box;
+  /* Faz com que o padding e a borda sejam incluídos nas dimensões totais */
+  background-color: #4D4D4D;
+}
+
+/* Estilo do container principal */
+.container.variant-B {
+  min-width: 400px;
+  /* Define a largura máxima do container */
+  max-width: 1000px;
+  margin: 0 auto;
+  /* Centraliza horizontalmente */
+  padding: 20px;
+  /* Espaçamento interno */
+  height: 100vh;
+  /* Ocupa toda a altura da tela */
+  display: flex;
+  flex-direction: column;
+  /* Alinha elementos em coluna */
+  align-items: center;
+  /* Centraliza horizontalmente */
+  background-color: #4D4D4D;
+  /* Cor de fundo */
+}
+
+
+
+.input-field.variant-B {
+  width: 100%;
+  /* Garante que a caixa de texto ocupe 100% do container */
+  height: 40px;
+  /* Altura consistente para todos os campos */
+  margin: 10px 0;
+  /* Margem entre os campos */
+  padding: 0 10px;
+  /* Padding interno */
+  border: 1px solid #ccc;
+  /* Borda padrão */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  font-family: 'Poppins', sans-serif;
+  /* Fonte Poppins */
+}
+
+
+/* Estilo do switch container */
+.switch-container.variant-B {
+  display: flex;
+  /* Flexbox para alinhamento horizontal */
+  width: 100%;
+  /* Largura total */
+  margin-bottom: 10px;
+  /* Margem abaixo do switch */
+}
+
+/* Estilo dos botões do switch */
+.switch-button.variant-B {
+  flex: 1;
+  /* Permite que os botões ocupem espaço igual */
+  height: 50px;
+  /* Altura do botão */
+  border: none;
+  /* Remove bordas */
+  background-color: #255362;
+  /* Cor padrão */
+  color: white;
+  /* Cor do texto */
+  cursor: pointer;
+  /* Cursor de pointer ao passar sobre o botão */
+  font-family: 'Poppins', sans-serif;
+  /* Define a fonte Poppins para os botões */
+  margin-top: 15px;
+}
+
+/* Estilo do botão ativo */
+.switch-button.active.variant-B {
+  background-color: #CF080F;
+  /* Cor do botão ativo */
+}
+
+/* Estilo do botão Cadastrar-se */
+.button-button-cadastro.variant-B {
+  width: 150px;
+  /* Largura total */
+  height: 60px;
+  /* Altura do botão */
+  border: none;
+  /* Remove bordas padrão */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  cursor: pointer;
+  /* Cursor de pointer ao passar sobre o botão */
+  font-size: 16px;
+  /* Tamanho da fonte */
+  color: white;
+  /* Cor do texto */
+  background-color: #255362;
+  /* Cor do botão de cadastro */
+  margin-top: 30px;
+  /* Margem acima do botão */
+}
+
+/* Hover do botão Cadastrar-se */
+.button-button-cadastro:hover.variant-B {
+  background-color: #1b3b46;
+  /* Tom mais escuro para hover */
+}
+
+/* Estilo do logo Rachaí */
+.logo-rachai1.variant-B {
+  width: 300px;
+  /* Largura reduzida para 30% */
+  max-width: 200px;
+  /* Largura máxima reduzida para 100px */
+  margin-top: 20px;
+  /* Espaço acima do logo */
+  margin-bottom: 50px;
+  /* Mantém a margem abaixo do logo para aproximar dos botões */
+  display: block;
+  /* Garante que a imagem seja um bloco */
+  margin-left: auto;
+  /* Centraliza a imagem */
+  margin-right: auto;
+  /* Centraliza a imagem */
+  object-fit: contain;
+  /* Faz com que a imagem mantenha suas proporções */
+  padding-bottom: 500 px;
+}

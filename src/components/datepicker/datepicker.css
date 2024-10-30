@@ -1,0 +1,59 @@
+/* DatePicker.css */
+.datepicker-container {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Calendário escondido inicialmente */
+.calendar {
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    width: 100%;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+td:hover {
+    background-color: #f0f0f0;
+}
+
+/* Dia selecionado */
+.selected {
+    background-color: #cf080f;
+    color: white;
+    border-radius: 50%;
+}
