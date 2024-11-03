@@ -1,12 +1,13 @@
--name: Vercel Production Deployment
--env:
+name: Vercel Production Deployment
+
+env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
--on:
+on:
   pull_request:
     branches:
       - main
--jobs:
+jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     steps:
