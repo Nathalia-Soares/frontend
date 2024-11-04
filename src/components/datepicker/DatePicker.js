@@ -1,20 +1,15 @@
 // DatePicker.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './datepicker.css';
-
 
 const DatePicker = () => {
     const [selectedDate, setSelectedDate] = useState('');
     const [calendarVisible, setCalendarVisible] = useState(false);
     const [daysInMonth, setDaysInMonth] = useState([]);
-    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+    const [currentMonth] = useState(new Date().getMonth());
+    const [currentYear] = useState(new Date().getFullYear());
 
-    useEffect(() => {
-        renderCalendar();
-    }, [currentMonth, currentYear]);
-
-    const renderCalendar = () => {
+    const renderCalendar = useCallback(() => {
         const days = [];
         const firstDay = new Date(currentYear, currentMonth, 1).getDay();
         const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -32,49 +27,34 @@ const DatePicker = () => {
         }
 
         setDaysInMonth(days);
-    };
+    }, [currentMonth, currentYear]);
+
+    useEffect(() => {
+        renderCalendar();
+    }, [currentMonth, currentYear, renderCalendar]);
 
     const handleDateClick = (day) => {
-        setSelectedDate(`${day}/${currentMonth + 1}/${currentYear}`);
+        setSelectedDate(`${currentYear}-${currentMonth + 1}-${day}`);
         setCalendarVisible(false);
     };
 
-    const toggleCalendar = () => {
-        setCalendarVisible(!calendarVisible);
-    };
-
     return (
-        <div className="datepicker-container">
+        <div className="datepicker">
             <input
                 type="text"
                 value={selectedDate}
-                placeholder="Selecione a data"
-                onClick={toggleCalendar}
+                onFocus={() => setCalendarVisible(true)}
                 readOnly
             />
             {calendarVisible && (
-                <div className="calendar">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Dom</th>
-                                <th>Seg</th>
-                                <th>Ter</th>
-                                <th>Qua</th>
-                                <th>Qui</th>
-                                <th>Sex</th>
-                                <th>Sáb</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>{daysInMonth}</tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table>
+                    <tbody>
+                        <tr>{daysInMonth}</tr>
+                    </tbody>
+                </table>
             )}
         </div>
     );
 };
 
 export default DatePicker;
-

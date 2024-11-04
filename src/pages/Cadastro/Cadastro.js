@@ -29,7 +29,7 @@ function Cadastro() {
     }, []);
 
     const [isMotorista, setIsMotorista] = useState(false);
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isPasswordVisible] = useState(false);
 
     const toggleSwitch = () => {
         setIsMotorista(!isMotorista);
