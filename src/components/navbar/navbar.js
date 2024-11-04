@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
     return (
-        <div className="menu-bar">
+        <div className="menu-bar" role="navigation">
             <Link to="/cadastro" className="menu-icon">
                 <img src="/assets/img/icon4.png" alt="Início" />
             </Link>
