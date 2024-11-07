@@ -6,7 +6,7 @@ import Home from './pages/Home/Home';
 
 function App() {
   return (
-    <Router>
+    <Router basename="">
       <Routes>
         <Route path="/" element={<Inicial />} />
         <Route path="/cadastro" element={<Cadastro />} /> {}
