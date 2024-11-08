@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './home-varianteA.css';
 import './home-varianteB.css';
-import DatePicker from '../../components/datepicker/DatePicker';
-import { Link } from 'react-router-dom';
 import Navbar from '../../components/navbar/navbar';
 
 const motoristas = [
