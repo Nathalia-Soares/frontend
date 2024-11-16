@@ -1,21 +1,26 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './navbar.css';
-import { Link } from 'react-router-dom';
 
 function Navbar() {
-    return (
-        <div className="menu-bar" role="navigation">
-            <Link to="/cadastro" className="menu-icon">
-                <img src="/assets/img/icon4.png" alt="Início" />
-            </Link>
-            <Link to="/home" className="menu-icon">
-                <img src="/assets/img/icon2.png" alt="Início" />
-            </Link>
-            <Link to="/perfil" className="menu-icon">
-                <img src="/assets/img/icon3.png" alt="Início" />
-            </Link>
-        </div>
-    );
+  const navigate = useNavigate();
+
+  const handleProfileClick = () => {
+    navigate('/perfil');
+  };
+
+  return (
+    <div className="header-container">
+      <div className="menu-icon">
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+      </div>
+      <div className="profile-picture" onClick={handleProfileClick}>
+        <img src="" alt="Profile" />
+      </div>
+    </div>
+  );
 }
 
 export default Navbar;

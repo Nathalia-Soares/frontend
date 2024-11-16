@@ -42,7 +42,9 @@ function Inicial() {
                 <Link to="/cadastro">
                     <button className={`button button-cadastro variant-${variant}`}>Cadastrar-se</button>
                 </Link>
-                <button className={`button button-login variant-${variant}`}>Login</button>
+                <Link to="/login">
+                    <button className={`button button-login variant-${variant}`}>Login</button>
+                </Link>
                 <span className={`esqueci-senha variant-${variant}`}>Esqueci minha senha</span>
             </div>
             <img 

@@ -34,6 +34,7 @@ body.variant-A {
 .logo-rachai2.variant-A {
     width: 20px;
     /* Ajuste o tamanho do logo */
+    margin-top: 60px;
     margin-bottom: 10px;
 }
 

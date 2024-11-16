@@ -1,0 +1,98 @@
+/* Estilo global para usar a fonte Poppins */
+body.variant-A {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #EFEFEF;
+}
+
+/* Estilo do container principal */
+.container.variant-A {
+  min-width: 800px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #EFEFEF;
+}
+
+.input-container.variant-A {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.input-container.variant-A i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #CF080F;
+}
+
+.input-field.variant-A {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0;
+  padding: 0 40px 0 40px; /* Espaço para o ícone */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #CF080F;
+  padding: 0; /* Remova o padding para reduzir a área de clique */
+  width: 20px; /* Defina uma largura específica para o ícone */
+  height: 20px; /* Defina uma altura específica para o ícone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo do botão Entrar */
+.button-button-cadastro.variant-A {
+  width: 150px;
+  height: 60px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  background-color: #CF080F;
+  margin-top: 30px;
+  padding: 10px;
+  align-self: center;
+}
+
+.button-button-cadastro:hover.variant-A {
+  background-color: #a0060a;
+}
+
+/* Estilo do logo Rachaí */
+.logo-rachai1.variant-A {
+  width: 300px;
+  max-width: 200px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  display: block;
+  object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error.variant-A {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

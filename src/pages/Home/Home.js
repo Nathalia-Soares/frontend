@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './home-varianteA.css';
 import './home-varianteB.css';
 import Navbar from '../../components/navbar/navbar';
+import Menu from '../../components/menu/menu';
 
 const motoristas = [
     {
@@ -67,13 +68,15 @@ function Home() {
     }, []);
 
     return (
+        <>
+        <Navbar />
         <div className={`container variant-${variant}`}>
-            <img 
-                    className={`logo-rachai2 variant-${variant}`}
-                    src={variant === 'A' ? '/assets/img/rachai.png' : '/assets/img/rachai2.png'} 
-                    alt="Logo Rachaí"
-                    style={{ width: '100px' }} 
-                />
+            <img
+                className={`logo-rachai2 variant-${variant}`}
+                src={variant === 'A' ? '/assets/img/rachai.png' : '/assets/img/rachai2.png'}
+                alt="Logo Rachaí"
+                style={{ width: '100px' }}
+            />
             <h1 className={`greeting variant-${variant}`}>Bom dia, Pedro</h1>
             <h2 className={`available-rides variant-${variant}`}>&nbsp;&nbsp;Suas Caronas Agendadas</h2>
             <div className={`ride-card variant-${variant}`}>
@@ -106,8 +109,9 @@ function Home() {
                     </div>
                 ))}
             </div>
-            <Navbar />
+            <Menu />
         </div>
+        </>
     );
 }
 

@@ -27,8 +27,23 @@ body.variant-A {
   /* Alinha elementos em coluna */
   align-items: center;
   /* Centraliza horizontalmente */
+  justify-content: center;
   background-color: #EFEFEF;
   /* Cor de fundo */
+}
+
+.input-container.variant-A {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.input-container.variant-A i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #CF080F;
 }
 
 .input-field.variant-A {
@@ -38,7 +53,7 @@ body.variant-A {
   /* Altura consistente para todos os campos */
   margin: 10px 0;
   /* Margem entre os campos */
-  padding: 0 10px;
+  padding: 0 10px 0 40px;
   /* Padding interno */
   border: 1px solid #ccc;
   /* Borda padrão */
@@ -48,11 +63,32 @@ body.variant-A {
   /* Fonte Poppins */
 }
 
+.input-field-select.variant-A {
+  width: 105%;
+  /* Garante que a caixa de texto ocupe 100% do container */
+  height: 40px;
+  /* Altura consistente para todos os campos */
+  /* Margem entre os campos */
+  padding: 0 10px 0 40px;
+  /* Padding interno */
+  border: 1px solid #ccc;
+  /* Borda padrão */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  font-family: 'Poppins', sans-serif;
+  /* Fonte Poppins */
+}
+
+.botoes-acoes.variant-A {
+  display: flex;
+  justify-content: space-between;
+}
 
 /* Estilo do switch container */
 .switch-container.variant-A {
   display: flex;
   /* Flexbox para alinhamento horizontal */
+  justify-content: space-between;
   width: 100%;
   /* Largura total */
   margin-bottom: 10px;
@@ -105,10 +141,11 @@ body.variant-A {
   margin-top: 30px;
   /* Margem acima do botão */
   padding: 10px;
+  align-self: center;
 }
 
 /* Hover do botão Cadastrar-se */
-.button-cadastro:hover.variant-A {
+.button-button-cadastro:hover.variant-A {
   background-color: #a0060a;
   /* Tom mais escuro para hover */
 }
@@ -125,11 +162,18 @@ body.variant-A {
   /* Mantém a margem abaixo do logo para aproximar dos botões */
   display: block;
   /* Garante que a imagem seja um bloco */
-  margin-left: auto;
-  /* Centraliza a imagem */
-  margin-right: auto;
-  /* Centraliza a imagem */
   object-fit: contain;
   /* Faz com que a imagem mantenha suas proporções */
   padding-bottom: 500 px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error.variant-A {
+  color: red;
+  /* Cor vermelha para mensagens de erro */
+  font-size: 14px;
+  /* Tamanho da fonte */
+  margin-top: 5px;
+  /* Margem acima do texto */
 }
