@@ -1,5 +1,5 @@
 /* Estilo do container principal */
-.container.variant-B {
+.container-cadastro2.variant-B {
   min-width: 400px;
   /* Define a largura máxima do container */
   max-width: 1000px;
@@ -19,7 +19,7 @@
   /* Cor de fundo */
 }
 
-.container.variant-B form {
+.container-cadastro2.variant-B form {
   width: 80%;
   /* Largura total do formulário */
   margin: 0 auto;
@@ -29,21 +29,21 @@
 
 }
 
-.input-container.variant-B {
+.input-container-cadastro2.variant-B {
   position: relative;
-  width: 100%;
+  width: 93%;
   margin: 10px 0;
 }
 
-.input-container.variant-B i {
+.input-container-cadastro2.variant-B i {
   position: absolute;
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: #255362;
+  color: #CF080F;
 }
 
-.input-field.variant-B {
+.input-field-cadastro2.variant-B {
   width: 100%;
   /* Garante que a caixa de texto ocupe 100% do container */
   height: 40px;
@@ -60,66 +60,13 @@
   /* Fonte Poppins */
 }
 
-.input-field-select.variant-B {
-  width: 105%;
-  /* Garante que a caixa de texto ocupe 100% do container */
-  height: 40px;
-  /* Altura consistente para todos os campos */
-  /* Margem entre os campos */
-  padding: 0 10px 0 40px;
-  /* Padding interno */
-  border: 1px solid #ccc;
-  /* Borda padrão */
-  border-radius: 5px;
-  /* Bordas arredondadas */
-  font-family: 'Poppins', sans-serif;
-  /* Fonte Poppins */
-}
-
-.botoes-acoes.variant-B {
+.botoes-acoes-cadastro2.variant-B {
   display: flex;
   justify-content: space-around;
-}
-
-/* Estilo do switch container */
-.switch-container.variant-B {
-  display: flex;
-  /* Flexbox para alinhamento horizontal */
-  justify-content: space-around;
-  width: 100%;
-  /* Largura total */
-  margin-bottom: 10px;
-  /* Margem abaixo do switch */
-}
-
-/* Estilo dos botões do switch */
-.switch-button.variant-B {
-  flex: 1;
-  /* Permite que os botões ocupem espaço igual */
-  height: 50px;
-  /* Altura do botão */
-  border: none;
-  /* Remove bordas */
-  background-color: #255362;
-  /* Cor padrão */
-  color: white;
-  /* Cor do texto */
-  cursor: pointer;
-  /* Cursor de pointer ao passar sobre o botão */
-  font-family: 'Poppins', sans-serif;
-  /* Define a fonte Poppins para os botões */
-  margin-top: 15px;
-  border-radius: 5px;
-}
-
-/* Estilo do botão ativo */
-.switch-button.active.variant-B {
-  background-color: #CF080F;
-  /* Cor do botão ativo */
 }
 
 /* Estilo do botão Cadastrar-se */
-.button-button-cadastro.variant-B {
+.button-button-cadastro2.variant-B {
   width: 150px;
   /* Largura total */
   height: 60px;
@@ -143,13 +90,13 @@
 }
 
 /* Hover do botão Cadastrar-se */
-.button-button-cadastro.variant-B:active {
+.button-button-cadastro2.variant-B:active {
   box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.50);
   /* Tom mais escuro para hover */
 }
 
 /* Estilo do logo Rachaí */
-.logo-rachai1.variant-B {
+.logo-rachai1-cadastro2.variant-B {
   width: 300px;
   /* Largura reduzida para 30% */
   max-width: 200px;
@@ -158,16 +105,14 @@
   /* Espaço acima do logo */
   margin-bottom: 50px;
   /* Mantém a margem abaixo do logo para aproximar dos botões */
-  display: block;
+  display: flex;
   /* Garante que a imagem seja um bloco */
+  align-items: center;
   object-fit: contain;
   /* Faz com que a imagem mantenha suas proporções */
-  padding-bottom: 500 px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.error.variant-B {
+.error-cadastro2.variant-B {
   color: red;
   /* Cor vermelha para mensagens de erro */
   font-size: 14px;

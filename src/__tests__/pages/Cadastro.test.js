@@ -1,116 +1,74 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import Cadastro from '../../pages/Cadastro/Cadastro';
 import { BrowserRouter as Router } from 'react-router-dom';
-
-const renderCadastro = () => {
-    return render(
-        <Router>
-            <Cadastro />
-        </Router>
-    );
-};
+import Cadastro from '../../pages/Cadastro/Cadastro';
+import '@testing-library/jest-dom';
 
 describe('Cadastro Component', () => {
-    test('renders without crashing', () => {
-        renderCadastro();
-        expect(screen.getByPlaceholderText('RA')).toBeInTheDocument();
+    beforeEach(() => {
+        jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
+    });
+
+    afterEach(() => {
+        jest.spyOn(global.Math, 'random').mockRestore();
+    });
+
+    test('renders Cadastro component', () => {
+        render(
+            <Router>
+                <Cadastro />
+            </Router>
+        );
+        expect(screen.getByPlaceholderText('Nome')).toBeInTheDocument();
         expect(screen.getByPlaceholderText('E-mail Institucional')).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('Senha')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('RA')).toBeInTheDocument();
+        expect(screen.getByText('Selecione o curso')).toBeInTheDocument();
     });
 
-    test('toggles between Carona and Motorista', () => {
-        renderCadastro();
+    test('handles input changes', () => {
+        render(
+            <Router>
+                <Cadastro />
+            </Router>
+        );
 
-        const caronaButton = screen.getByText('Carona');
-        const motoristaButton = screen.getByText('Motorista');
+        fireEvent.change(screen.getByPlaceholderText('Nome'), { target: { value: 'John Doe' } });
+        fireEvent.change(screen.getByPlaceholderText('E-mail Institucional'), { target: { value: 'john@fatec.sp.gov.br' } });
+        fireEvent.change(screen.getByPlaceholderText('RA'), { target: { value: '123456' } });
+        fireEvent.change(screen.getByText('Selecione o curso'), { target: { value: 'DSM' } });
 
-        // Initially, Carona should be active
-        expect(caronaButton).toHaveClass('active');
-        expect(motoristaButton).not.toHaveClass('active');
-
-        // Click Motorista button
-        fireEvent.click(motoristaButton);
-
-        // Now, Motorista should be active
-        expect(motoristaButton).toHaveClass('active');
-        expect(caronaButton).not.toHaveClass('active');
-
-        // Additional fields should be visible
-        expect(screen.getByPlaceholderText('Modelo do Carro')).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('Placa')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Nome').value).toBe('John Doe');
+        expect(screen.getByPlaceholderText('E-mail Institucional').value).toBe('john@fatec.sp.gov.br');
+        expect(screen.getByPlaceholderText('RA').value).toBe('123456');
+        expect(screen.getByText('Selecione o curso').value).toBe('DSM');
     });
 
-    test('renders correct logo based on variant', () => {
-        renderCadastro();
+    test('validates form inputs', () => {
+        render(
+            <Router>
+                <Cadastro />
+            </Router>
+        );
 
-        const logo = screen.getByAltText('Logo Rachaí');
-        expect(logo).toBeInTheDocument();
-        expect(logo.src).toMatch(/\/assets\/img\/rachai(2)?\.png$/);
+        fireEvent.click(screen.getByText('Continuar'));
+
+        expect(screen.getByText('Nome é obrigatório')).toBeInTheDocument();
+        expect(screen.getByText('E-mail é obrigatório')).toBeInTheDocument();
+        expect(screen.getByText('RA é obrigatório')).toBeInTheDocument();
+        expect(screen.getByText('Curso é obrigatório')).toBeInTheDocument();
     });
 
-    test('renders Cadastro button', () => {
-        renderCadastro();
+    test('handles motorista switch', () => {
+        render(
+            <Router>
+                <Cadastro />
+            </Router>
+        );
 
-        const cadastroButton = screen.getByText('Cadastrar-se');
-        expect(cadastroButton).toBeInTheDocument();
-    });
+        fireEvent.click(screen.getByText('Motorista'));
 
-    describe('Cadastro Component', () => {
-        test('renders without crashing', () => {
-            renderCadastro();
-            expect(screen.getByPlaceholderText('RA')).toBeInTheDocument();
-            expect(screen.getByPlaceholderText('E-mail Institucional')).toBeInTheDocument();
-            expect(screen.getByPlaceholderText('Senha')).toBeInTheDocument();
-        });
-    
-        test('toggles between Carona and Motorista', () => {
-            renderCadastro();
-    
-            const caronaButton = screen.getByText('Carona');
-            const motoristaButton = screen.getByText('Motorista');
-    
-            // Initially, Carona should be active
-            expect(caronaButton).toHaveClass('active');
-            expect(motoristaButton).not.toHaveClass('active');
-    
-            // Click Motorista button
-            fireEvent.click(motoristaButton);
-    
-            // Now, Motorista should be active
-            expect(motoristaButton).toHaveClass('active');
-            expect(caronaButton).not.toHaveClass('active');
-    
-            // Additional fields should be visible
-            expect(screen.getByPlaceholderText('Modelo do Carro')).toBeInTheDocument();
-            expect(screen.getByPlaceholderText('Placa')).toBeInTheDocument();
-        });
-    
-        test('renders correct logo based on variant', () => {
-            renderCadastro();
-    
-            const logo = screen.getByAltText('Logo Rachaí');
-            expect(logo).toBeInTheDocument();
-            expect(logo.src).toMatch(/\/assets\/img\/rachai(2)?\.png$/);
-        });
-    
-        test('renders Cadastro button', () => {
-            renderCadastro();
-    
-            const cadastroButton = screen.getByText('Cadastrar-se');
-            expect(cadastroButton).toBeInTheDocument();
-        });
-    
-        test('password visibility toggle', () => {
-            renderCadastro();
-    
-            const passwordInput = screen.getByPlaceholderText('Senha');
-            expect(passwordInput).toHaveAttribute('type', 'password');
-    
-            // Simulate password visibility toggle
-            fireEvent.click(passwordInput);
-            expect(passwordInput).toHaveAttribute('type', 'password');
-        });
+        expect(screen.getByPlaceholderText('Modelo do Veículo')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Placa do Veículo')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Cor do Veículo')).toBeInTheDocument();
     });
 });

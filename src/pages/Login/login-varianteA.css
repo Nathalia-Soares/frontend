@@ -1,0 +1,96 @@
+/* Estilo do container principal */
+.container-login.variant-A {
+  min-width: 400px;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #EFEFEF;
+}
+
+.container-login.variant-A form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container-login.variant-A {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.input-container-login.variant-A i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #CF080F;
+}
+
+.input-field-login.variant-A {
+  width: 100%; /* Ajusta a largura para 100% do contêiner */
+  padding: 10px;
+  padding-left: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #CF080F;
+  padding: 0; /* Remova o padding para reduzir a área de clique */
+  width: 20px; /* Defina uma largura específica para o ícone */
+  height: 20px; /* Defina uma altura específica para o ícone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo do botão Entrar */
+.button-button-login.variant-A {
+  width: 150px;
+  height: 60px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  background-color: #CF080F;
+  margin-top: 30px;
+  padding: 10px;
+  align-self: center;
+}
+
+.button-button-login.variant-A:active {
+  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.50);
+}
+
+/* Estilo do logo Rachaí */
+.logo-rachai1-login.variant-A {
+  width: 300px;
+  max-width: 200px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  display: block;
+  object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-login.variant-A {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

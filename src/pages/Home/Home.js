@@ -2,47 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './home-varianteA.css';
 import './home-varianteB.css';
 import Navbar from '../../components/navbar/navbar';
-
-const motoristas = [
-    {
-        id: 1,
-        nome: "Carlos, 43",
-        curso: "GE",
-        periodo: "Noturno",
-        img: "/assets/img/motorista1.jpg"
-    },
-    {
-        id: 2,
-        nome: "Ana, 30",
-        curso: "DSM",
-        periodo: "Diurno",
-        img: "/assets/img/motorista2.jpg"
-    },
-    {
-        id: 3,
-        nome: "Lucas, 28",
-        curso: "GPI",
-        periodo: "Noturno",
-        img: "/assets/img/motorista3.jpg"
-    },
-    {
-        id: 4,
-        nome: "Mariana, 22",
-        curso: "DSM",
-        periodo: "Diurno",
-        img: "/assets/img/motorista4.jpg"
-    },
-    {
-        id: 5,
-        nome: "Thiago, 27",
-        curso: "GPI",
-        periodo: "Noturno",
-        img: "/assets/img/motorista5.jpg"
-    }
-];
+import Menu from '../../components/menu/menu';
+import ProfilePic from '../../assets/img/profile.png';
 
 function Home() {
     const [variant, setVariant] = useState('A');
+    const [userName, setUserName] = useState('');
+    const [motoristas, setMotoristas] = useState([]);
+    const [greeting, setGreeting] = useState('Bom dia');
 
     useEffect(() => {
         // Escolhe aleatoriamente entre 'A' e 'B'
@@ -66,54 +33,93 @@ function Home() {
         };
     }, []);
 
+    useEffect(() => {
+        // Recupera o nome do usuário do LocalStorage
+        const user = localStorage.getItem('user');
+        if (user) {
+            try {
+                const userData = JSON.parse(user);
+                setUserName(userData.nome);
+            } catch (error) {
+                console.error('Error parsing user data from localStorage:', error);
+            }
+        }
+
+        // Busca os motoristas do backend
+        const fetchMotoristas = async () => {
+            try {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/usuarios/usuario/motoristas`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                setMotoristas(data);
+            } catch (error) {
+                console.error('Error fetching motoristas:', error);
+            }
+        };
+
+        fetchMotoristas();
+
+        // Define a saudação com base no horário atual
+        const currentHour = new Date().getHours();
+        if (currentHour >= 4 && currentHour < 12) {
+            setGreeting('Bom dia');
+        } else if (currentHour >= 12 && currentHour < 18) {
+            setGreeting('Boa tarde');
+        } else {
+            setGreeting('Boa noite');
+        }
+    }, []);
+
     return (
-        <div className={`container variant-${variant}`}>
-            <img 
-                    className={`logo-rachai2 variant-${variant}`}
-                    src={variant === 'A' ? '/assets/img/rachai.png' : '/assets/img/rachai2.png'} 
-                    alt="Logo Rachaí"
-                    style={{ width: '100px' }} 
-                />
-            <h1 className={`greeting variant-${variant}`}>Bom dia, Pedro</h1>
-            <h2 className={`available-rides variant-${variant}`}>&nbsp;&nbsp;Suas Caronas Agendadas</h2>
-            <div className={`ride-card variant-${variant}`}>
-                <div className={`ride-details variant-${variant}`}>
-                    <img className={`driver-image variant-${variant}`} src="/assets/img/motorista2.jpg" alt="Motorista" />
-                    <div className={`ride-info variant-${variant}`}>
-                        <div className={`driver-name-age variant-${variant}`}>&nbsp;&nbsp;&nbsp;&nbsp;Ana, 30</div>
-                        <div className={`ride-time variant-${variant}`}>&nbsp;&nbsp;&nbsp;&nbsp;Amanhã às 18:40</div>
-                        <div className={`ride-location variant-${variant}`}>
-                            <span className={`location-icon variant-${variant}`}>&nbsp;&nbsp;📍</span>
+        <>
+        <Navbar />
+        <div className={`container-home variant-${variant}`}>
+            <img
+                className={`logo-rachai2-home variant-${variant}`}
+                src={variant === 'A' ? '/assets/img/rachai.png' : '/assets/img/rachai2.png'}
+                alt="Logo Rachaí"
+                style={{ width: '100px' }}
+            />
+            <h1 className={`greeting-home variant-${variant}`}>{greeting}, {userName}</h1>
+            <h2 className={`available-rides-home variant-${variant}`}>&nbsp;&nbsp;Suas Caronas Agendadas</h2>
+            <div className={`ride-card-home variant-${variant}`}>
+                <div className={`ride-details-home variant-${variant}`}>
+                    <img className={`driver-image-home variant-${variant}`} src="/assets/img/motorista2.jpg" alt="Motorista" />
+                    <div className={`ride-info-home variant-${variant}`}>
+                        <div className={`driver-name-age-home variant-${variant}`}>&nbsp;&nbsp;&nbsp;&nbsp;Ana, 30</div>
+                        <div className={`ride-time-home variant-${variant}`}>&nbsp;&nbsp;&nbsp;&nbsp;Amanhã às 18:40</div>
+                        <div className={`ride-location-home variant-${variant}`}>
+                            <span className={`location-icon-home variant-${variant}`}>&nbsp;&nbsp;📍</span>
                             Atacadão Cotia
                         </div>
                     </div>
                 </div>
-                <button className={`ride-button variant-${variant}`}>
+                <button className={`ride-button-home variant-${variant}`}>
                     <img src="/assets/img/icon1.png" alt="Ícone" />
                 </button>
             </div>
-            <h2 className={`available-rides2 variant-${variant}`}>&nbsp;&nbsp;Agende uma Carona</h2>
+            <h2 className={`available-rides2-home variant-${variant}`}>&nbsp;&nbsp;Agende uma Carona</h2>
 
-            <div className={`motorista-list variant-${variant}`}>
+            <div className={`motorista-list-home variant-${variant}`}>
                 {motoristas.map(motorista => (
-                    <div key={motorista.id} className={`motorista-item variant-${variant}`}>
-                        <img className={`motorista-img variant-${variant}`} src={motorista.img} alt={motorista.nome} />
-                        <div className={`motorista-info variant-${variant}`}>
+                    <div key={motorista._id} className={`motorista-item-home variant-${variant}`}>
+                        <img className={`motorista-img-home variant-${variant}`} src={motorista.img_url || ProfilePic } alt={motorista.nome} />
+                        <div className={`motorista-info-home variant-${variant}`}>
                             <h3>{motorista.nome}</h3>
                             <p>Curso: {motorista.curso}</p>
-                            <p>Período: {motorista.periodo}</p>
+                            <p>Modelo do Veículo: {motorista.veiculos[0]?.modelo || 'N/A'}</p>
                         </div>
                     </div>
                 ))}
             </div>
-            <Navbar />
+            <Menu />
         </div>
+        </>
     );
 }
 
 export default Home;
-
-
-
-
-

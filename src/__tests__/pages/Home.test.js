@@ -1,67 +1,82 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Home from '../../pages/Home/Home';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
+import fetchMock from 'jest-fetch-mock';
+
+fetchMock.enableMocks();
 
 describe('Home Component', () => {
-    test('renders the Home component', () => {
-        render(
-            <Router>
-                <Home />
-            </Router>
-        );
-        const greetingElement = screen.getByText(/Bom dia, Pedro/i);
-        expect(greetingElement).toBeInTheDocument();
+    beforeEach(() => {
+        fetch.resetMocks();
+        localStorage.clear();
     });
 
-    test('renders the logo image', () => {
+    test('renders Home component and checks initial state', () => {
         render(
-            <Router>
+            <MemoryRouter>
                 <Home />
-            </Router>
+            </MemoryRouter>
         );
-        const logoElement = screen.getByAltText(/Logo Rachaí/i);
-        expect(logoElement).toBeInTheDocument();
+        expect(screen.getByText(/Suas Caronas Agendadas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Agende uma Carona/i)).toBeInTheDocument();
     });
 
-    test('renders the scheduled rides section', () => {
+    test('sets variant randomly and applies correct CSS class', () => {
         render(
-            <Router>
+            <MemoryRouter>
                 <Home />
-            </Router>
+            </MemoryRouter>
         );
-        const scheduledRidesElement = screen.getByText(/Suas Caronas Agendadas/i);
-        expect(scheduledRidesElement).toBeInTheDocument();
+        const variant = document.body.classList.contains('variant-A') ? 'A' : 'B';
+        expect(document.body.classList.contains(`variant-${variant}`)).toBe(true);
     });
 
-    test('renders the ride card with driver details', () => {
+    test('fetches and displays user name from localStorage', () => {
+        const user = { nome: 'Test User' };
+        localStorage.setItem('user', JSON.stringify(user));
         render(
-            <Router>
+            <MemoryRouter>
                 <Home />
-            </Router>
+            </MemoryRouter>
         );
-        const driverNameElements = screen.getAllByText(/Ana, 30/i);
-        expect(driverNameElements.length).toBeGreaterThan(0);
+        expect(screen.getByText(/Test User/i)).toBeInTheDocument();
     });
 
-    test('renders the ride location', () => {
+    test('fetches and displays motoristas from backend', async () => {
+        const motoristas = [
+            { _id: '1', nome: 'Motorista 1', curso: 'Curso 1', veiculos: [{ modelo: 'Modelo 1' }], img_url: '' },
+            { _id: '2', nome: 'Motorista 2', curso: 'Curso 2', veiculos: [{ modelo: 'Modelo 2' }], img_url: '' }
+        ];
+        fetch.mockResponseOnce(JSON.stringify(motoristas));
+
         render(
-            <Router>
+            <MemoryRouter>
                 <Home />
-            </Router>
+            </MemoryRouter>
         );
-        const rideLocationElement = screen.getByText(/Atacadão Cotia/i);
-        expect(rideLocationElement).toBeInTheDocument();
+
+        await waitFor(() => {
+            expect(screen.getByText(/Motorista 1/i)).toBeInTheDocument();
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText(/Motorista 2/i)).toBeInTheDocument();
+        });
     });
 
-    test('renders the Navbar component', () => {
+    test('sets greeting based on current time', () => {
+        const originalDate = Date;
+        global.Date = jest.fn(() => ({
+            getHours: () => 10
+        }));
         render(
-            <Router>
+            <MemoryRouter>
                 <Home />
-            </Router>
+            </MemoryRouter>
         );
-        const navbarElement = screen.getByRole('navigation');
-        expect(navbarElement).toBeInTheDocument();
+        expect(screen.getByText(/Bom dia/i)).toBeInTheDocument();
+        global.Date = originalDate;
     });
 });
