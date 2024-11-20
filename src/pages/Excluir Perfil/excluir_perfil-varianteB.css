@@ -1,0 +1,61 @@
+.excluir-perfil-container.variant-B h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #FFFFFF;
+}
+
+.excluir-perfil-container.variant-B p {
+  color: #FFFFFF;
+}
+
+.excluir-container.variant-B {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.excluir-perfil-container.variant-B {
+  background-color: #255362;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: outset 6px 6px 12px rgba(0, 0, 0, 0.35);
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.button-container.variant-B {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.button-container.variant-B button {
+  width: 150px;
+  height: 60px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-container.variant-B button:active {
+  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.50);
+}
+
+.cancelar-button.variant-B {
+  background-color: #525151;
+  color: #fff;
+}
+
+.excluir-button.variant-B {
+  background-color: red;
+  color: #fff;
+}

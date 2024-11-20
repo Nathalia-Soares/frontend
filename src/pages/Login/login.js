@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import './login-varianteA.css';
 import './login-varianteB.css';
 
 function Login() {
+    const navigate = useNavigate();
     const [variant, setVariant] = useState('A');
     const [formData, setFormData] = useState({
         email: '',
@@ -41,6 +43,21 @@ function Login() {
         }));
     };
 
+    const validate = () => {
+        const newErrors = {};
+        if (!formData.email) {
+            newErrors.email = 'E-mail é obrigatório';
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = 'E-mail inválido';
+        } else if (!formData.email.endsWith('@fatec.sp.gov.br')) {
+            newErrors.email = 'E-mail deve ser @fatec.sp.gov.br';
+        }
+        if (!formData.senha) {
+            newErrors.senha = 'Senha é obrigatória';
+        }
+        return newErrors;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = validate();
@@ -60,26 +77,24 @@ function Login() {
             });
             const data = await response.json();
             console.log('Success:', data);
+
+            if (data.token && data.userInfo) {
+                // Armazena o token e as informações do usuário no LocalStorage
+                const expirationTime = new Date().getTime() + 6 * 60 * 60 * 1000; // 6 horas
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.userInfo));
+                localStorage.setItem('expirationTime', expirationTime);
+
+                // Redireciona para a página /home
+                setTimeout(() => navigate('/home'), 3000);
+            } else {
+                console.error('Erro ao fazer login. Verifique suas credenciais.');
+                setErrors({ login: 'Erro ao fazer login. Verifique suas credenciais.' });
+            }
         } catch (error) {
             console.error('Error:', error);
+            setErrors({ login: 'Erro ao fazer login. Verifique suas credenciais.' });
         }
-    };
-
-    const validate = () => {
-        const newErrors = {};
-        if (!formData.email) {
-            newErrors.email = 'E-mail é obrigatório';
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'E-mail inválido';
-        } else if (!formData.email.endsWith('@fatec.sp.gov.br')) {
-            newErrors.email = 'E-mail deve ser @fatec.sp.gov.br';
-        }
-        if (!formData.senha) {
-            newErrors.senha = 'Senha é obrigatória';
-        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(formData.senha)) {
-            newErrors.senha = 'Senha deve ter no mínimo 8 caracteres, pelo menos 1 letra maiúscula, 1 letra minúscula, 1 número e 1 caractere especial';
-        }
-        return newErrors;
     };
 
     const togglePasswordVisibility = () => {
@@ -87,17 +102,17 @@ function Login() {
     };
 
     return (
-        <div className={`container variant-${variant}`}>
+        <div className={`container-login variant-${variant}`}>
             <img
-                className={`logo-rachai1 variant-${variant}`}
+                className={`logo-rachai1-login variant-${variant}`}
                 src={variant === 'A' ? '/assets/img/rachai.png' : '/assets/img/rachai2.png'}
                 alt="Logo Rachaí"
             />
             <form onSubmit={handleSubmit}>
-                <div className={`input-container variant-${variant}`}>
+                <div className={`input-container-login variant-${variant}`}>
                     <i className="fas fa-envelope"></i>
                     <input
-                        className={`input-field variant-${variant}`}
+                        className={`input-field-login variant-${variant}`}
                         type="email"
                         name="email"
                         placeholder="E-mail: usuario@fatec.sp.gov.br"
@@ -105,10 +120,10 @@ function Login() {
                         onChange={handleChange}
                     />
                 </div>
-                {errors.email && <span className={`error variant-${variant}`}>{errors.email}</span>}
-                <div className={`input-container variant-${variant}`}>
+                {errors.email && <span className={`error-login variant-${variant}`}>{errors.email}</span>}
+                <div className={`input-container-login variant-${variant}`}>
                     <input
-                        className={`input-field variant-${variant}`}
+                        className={`input-field-login variant-${variant}`}
                         type={showPassword ? "text" : "password"}
                         name="senha"
                         placeholder="Senha"
@@ -120,8 +135,10 @@ function Login() {
                         onClick={togglePasswordVisibility}>   
                     </i>
                 </div>
-                {errors.senha && <span className={`error variant-${variant}`}>{errors.senha}</span>}
-                <button type="submit" className={`button-button-cadastro variant-${variant}`}>
+                {errors.senha && <span className={`error-login variant-${variant}`}>{errors.senha}</span>}
+                {errors.login && <span className={`error-login variant-${variant}`}>{errors.login}</span>}
+                <br />
+                <button type="submit" className={`button-button-login variant-${variant}`}>
                     Login
                 </button>
             </form>

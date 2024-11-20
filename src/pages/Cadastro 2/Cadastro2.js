@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './cadastro2-varianteA.css';
 import './cadastro2-varianteB.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function CadastroAuth() {
     const navigate = useNavigate();
@@ -109,6 +109,7 @@ function CadastroAuth() {
             });
             const data = await response.json();
             console.log('Success:', data);
+            navigate('/login');
         } catch (error) {
             console.error('Error:', error);
         }
@@ -123,17 +124,17 @@ function CadastroAuth() {
     };
 
     return (
-        <div className={`container variant-${variant}`}>
+        <div className={`container-cadastro2 variant-${variant}`}>
             <img
-                className={`logo-rachai1 variant-${variant}`}
+                className={`logo-rachai1-cadastro2 variant-${variant}`}
                 src={variant === 'A' ? '/assets/img/rachai.png' : '/assets/img/rachai2.png'}
                 alt="Logo Rachaí"
             />
             <form onSubmit={handleSubmit}>
-                <div className={`input-container variant-${variant}`}>
+                <div className={`input-container-cadastro2 variant-${variant}`}>
                     <i className="fas fa-envelope"></i>
                     <input
-                        className={`input-field variant-${variant}`}
+                        className={`input-field-cadastro2 variant-${variant}`}
                         type="email"
                         name="email"
                         placeholder="E-mail: usuario@fatec.sp.gov.br"
@@ -141,10 +142,10 @@ function CadastroAuth() {
                         onChange={handleChange}
                     />
                 </div>
-                {errors.email && <span className={`error variant-${variant}`}>{errors.email}</span>}
-                <div className={`input-container variant-${variant}`}>
+                {errors.email && <span className={`error-cadastro2 variant-${variant}`}>{errors.email}</span>}
+                <div className={`input-container-cadastro2 variant-${variant}`}>
                     <input
-                        className={`input-field variant-${variant}`}
+                        className={`input-field-cadastro2 variant-${variant}`}
                         type={showPassword ? "text" : "password"}
                         name="senha"
                         placeholder="Senha"
@@ -156,10 +157,10 @@ function CadastroAuth() {
                         onClick={togglePasswordVisibility}
                     ></i>
                 </div>
-                {errors.senha && <span className={`error variant-${variant}`}>{errors.senha}</span>}
-                <div className={`input-container variant-${variant}`}>
+                {errors.senha && <span className={`error-cadastro2 variant-${variant}`}>{errors.senha}</span>}
+                <div className={`input-container-cadastro2 variant-${variant}`}>
                     <input
-                        className={`input-field variant-${variant}`}
+                        className={`input-field-cadastro2 variant-${variant}`}
                         type={showConfirmPassword ? "text" : "password"}
                         name="confirmSenha"
                         placeholder="Confirme a Senha"
@@ -171,11 +172,11 @@ function CadastroAuth() {
                         onClick={toggleConfirmPasswordVisibility}
                     ></i>
                 </div>
-                {errors.confirmSenha && <span className={`error variant-${variant}`}>{errors.confirmSenha}</span>}
+                {errors.confirmSenha && <span className={`error-cadastro2 variant-${variant}`}>{errors.confirmSenha}</span>}
                 <br />
-                <div className={`botoes-acoes variant-${variant}`}>
-                    <button className={`button-button-cadastro variant-${variant}`} onClick={() => navigate(-1)}>Voltar</button>
-                    <button type="submit" className={`button-button-cadastro variant-${variant}`}>
+                <div className={`botoes-acoes-cadastro2 variant-${variant}`}>
+                    <button className={`button-button-cadastro2 variant-${variant}`} onClick={() => navigate(-1)}>Voltar</button>
+                    <button type="submit" className={`button-button-cadastro2 variant-${variant}`}>
                         Cadastrar-se
                     </button>
                 </div>

@@ -99,6 +99,7 @@ function Cadastro() {
             });
             const data = await response.json();
             console.log('Success:', data);
+            navigate('/cadastro_auth');
         } catch (error) {
             console.error('Error:', error);
         }
@@ -179,7 +180,7 @@ function Cadastro() {
                         <button
                             type="button"
                             className={`switch-button variant-${variant} ${!isMotorista ? 'active' : ''}`}
-                            onClick={(e) => { e.preventDefault(); toggleSwitch('CARONA'); }}>
+                            onClick={(e) => { e.preventDefault(); toggleSwitch('PASSAGEIRO'); }}>
                             Carona
                         </button>
                         <button

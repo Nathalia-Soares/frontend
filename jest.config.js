@@ -4,5 +4,5 @@ module.exports = {
   },
   testEnvironment: "jsdom",
   moduleFileExtensions: ["js", "jsx"],
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"]
+  setupFilesAfterEnv: ["<rootDir>/src/setupTests.js"] // Aponta para o arquivo setupTests.js
 };

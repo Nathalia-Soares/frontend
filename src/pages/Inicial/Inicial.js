@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './inicial-varianteA.css'; 
-import './inicial-varianteB.css'; 
+import './inicial-varianteA.css';
+import './inicial-varianteB.css';
 import { Link } from 'react-router-dom';
 
 function Inicial() {
@@ -29,29 +29,29 @@ function Inicial() {
     }, []);
 
     return (
-        <div className={`container variant-${variant}`}>
+        <div className={`container-index variant-${variant}`}>
             <div>
-            <img 
-                    className={`logo-rachai0 variant-${variant}`}
-                    src={variant === 'A' ? '/assets/img/rachai.png' : '/assets/img/rachai2.png'} 
-                    alt="Logo Rachaí" 
+                <img
+                    className={`logo-rachai0-index variant-${variant}`}
+                    src={variant === 'A' ? '/assets/img/rachai.png' : '/assets/img/rachai2.png'}
+                    alt="Logo Rachaí"
                 />
             </div>
-            
-            <div className={`button-container variant-${variant}`}>
+
+            <div className={`button-container-index variant-${variant}`}>
                 <Link to="/cadastro">
-                    <button className={`button button-cadastro variant-${variant}`}>Cadastrar-se</button>
+                    <button className={`button-cadastro-index variant-${variant}`}>Cadastrar-se</button>
                 </Link>
                 <Link to="/login">
-                    <button className={`button button-login variant-${variant}`}>Login</button>
+                    <button className={`button-login-index variant-${variant}`}>Login</button>
                 </Link>
-                <span className={`esqueci-senha variant-${variant}`}>Esqueci minha senha</span>
+                <span className={`esqueci-senha-index variant-${variant}`}>Esqueci minha senha</span>
             </div>
-            <img 
-                    className={`logo-fatec variant-${variant}`}
-                    src={variant === 'A' ? '/assets/img/fatec.png' : '/assets/img/fatec2.png'} 
-                    alt="Logo Rachaí" 
-                />
+            <img
+                className={`logo-fatec-index variant-${variant}`}
+                src={variant === 'A' ? '/assets/img/fatec.png' : '/assets/img/fatec2.png'}
+                alt="Logo Rachaí"
+            />
         </div>
     );
 }

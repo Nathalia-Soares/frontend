@@ -1,18 +1,8 @@
-/* Estilo global para usar a fonte Poppins */
-body.variant-B {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: #4D4D4D;
-}
-
 /* Estilo do container principal */
-.container.variant-B {
+.container-login.variant-B {
   min-width: 400px;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,25 +11,33 @@ body.variant-B {
   background-color: #4D4D4D;
 }
 
-.input-container.variant-B {
+.container-login.variant-B form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container-login.variant-B {
   position: relative;
   width: 100%;
   margin: 10px 0;
+  display: flex;
+  justify-content: center;
 }
 
-.input-container.variant-B i {
+.input-container-login.variant-B i {
   position: absolute;
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: #CF080F;
+  color: #255362;
 }
 
-.input-field.variant-B {
-  width: 100%;
-  height: 40px;
-  margin: 10px 0;
-  padding: 0 40px 0 40px; /* Espaço para o ícone */
+.input-field-login.variant-B {
+  width: 100%; /* Ajusta a largura para 100% do contêiner */
+  padding: 10px;
+  padding-left: 40px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-family: 'Poppins', sans-serif;
@@ -52,10 +50,16 @@ body.variant-B {
   transform: translateY(-50%);
   cursor: pointer;
   color: #CF080F;
+  padding: 0; /* Remova o padding para reduzir a área de clique */
+  width: 20px; /* Defina uma largura específica para o ícone */
+  height: 20px; /* Defina uma altura específica para o ícone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Estilo do botão Entrar */
-.button-button-cadastro.variant-B {
+.button-button-login.variant-B {
   width: 150px;
   height: 60px;
   border: none;
@@ -63,28 +67,30 @@ body.variant-B {
   cursor: pointer;
   font-size: 16px;
   color: white;
-  background-color: #255362;
+  background-color: #CF080F;
   margin-top: 30px;
   padding: 10px;
   align-self: center;
 }
 
-.button-button-cadastro:hover.variant-B {
-  background-color: #1b3b46;
+.button-button-login.variant-B:active {
+  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.50);
 }
 
 /* Estilo do logo Rachaí */
-.logo-rachai1.variant-B {
+.logo-rachai1-login.variant-B {
   width: 300px;
   max-width: 200px;
   margin-top: 20px;
   margin-bottom: 50px;
   display: block;
   object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.error.variant-B {
-  color: white;
+.error-login.variant-B {
+  color: red;
   font-size: 14px;
   margin-top: 5px;
 }

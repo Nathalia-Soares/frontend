@@ -1,14 +1,18 @@
 /* Estilo global para usar a fonte Poppins */
 body.variant-B {
-  font-family: 'Poppins', sans-serif; /* Define a fonte Poppins como padrão */
-  margin: 0; /* Remove margens padrão do body */
-  padding: 0; /* Remove espaçamento padrão do body */
-  box-sizing: border-box; /* Faz com que o padding e a borda sejam incluídos nas dimensões totais */
-  background-color: #4D4D4D
+  font-family: 'Poppins', sans-serif;
+  /* Define a fonte Poppins como padrão */
+  margin: 0;
+  /* Remove margens padrão do body */
+  padding: 0;
+  /* Remove espaçamento padrão do body */
+  box-sizing: border-box;
+  /* Faz com que o padding e a borda sejam incluídos nas dimensões totais */
+  background-color: #4D4D4D;
 }
 
 /* Estilo do container principal */
-.container.variant-B {
+.container-index.variant-B {
   min-width: 400px; /* Define a largura máxima do container */
   max-width: 1000px;
   margin: 0 auto; /* Centraliza horizontalmente */
@@ -17,18 +21,18 @@ body.variant-B {
   display: flex;
   flex-direction: column; /* Alinha elementos em coluna */
   align-items: center; /* Centraliza horizontalmente */
+  justify-content: center;
   background-color: #4D4D4D; /* Cor de fundo */
 }
 
-
-
 /* Estilo dos botões */
-.button.variant-B {
-  width: 100%; /* Largura total */
-  height: 60px; /* Altura do botão */
+.button-container-index.variant-B {
+  display: flex;
+  flex-direction: column; /* Alinha elementos em coluna */
+  align-items: center;
   border: none; /* Remove bordas padrão */
   border-radius: 5px; /* Bordas arredondadas */
-  margin: 5px 0; /* Mantém a margem entre os botões */
+  margin: 20px 0; /* Mantém a margem entre os botões */
   cursor: pointer; /* Cursor de pointer ao passar sobre o botão */
   font-size: 16px; /* Tamanho da fonte */
   color: white; /* Cor do texto */
@@ -36,25 +40,39 @@ body.variant-B {
 }
 
 /* Estilo do botão Login */
-.button-login.variant-B {
+.button-login-index.variant-B {
+  width: 250px;
+  height: 60px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  border: none;
+  font-size: 16px;
+  margin-bottom: 20px;
   background-color: #CF080F; /* Cor do botão de login */
 }
 
-.button-login:hover.variant-B {
-  background-color: #a0060a; /* Tom mais escuro para hover */
+.button-login-index.variant-B:active {
+  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.50);
 }
 
 /* Estilo do botão Cadastrar-se */
-.button-cadastro.variant-B {
+.button-cadastro-index.variant-B {
+  width: 250px;
+  height: 60px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-size: 16px;
+  border: none;
+  margin-bottom: 20px;
   background-color: #255362; /* Cor do botão de cadastro */
 }
 
-.button-cadastro:hover.variant-B {
-  background-color: #1b3b46; /* Tom mais claro para hover */
+.button-cadastro-index.variant-B:active {
+  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.50);
 }
 
 /* Estilo do texto "Esqueci minha senha" */
-.esqueci-senha.variant-B {
+.esqueci-senha-index.variant-B {
   color: #FFFFFF; /* Cor do texto */
   cursor: pointer; /* Cursor de pointer */
   margin: 10px 0; /* Margem em cima e embaixo */
@@ -63,7 +81,7 @@ body.variant-B {
 }
 
 /* Estilo do logo Rachaí */
-.logo-rachai0.variant-B {
+.logo-rachai0-index.variant-B {
   width: 300px; /* Largura reduzida para 30% */
   max-width: 200px; /* Largura máxima reduzida para 100px */
   margin-top: 250px; /* Espaço acima do logo */
@@ -76,7 +94,7 @@ body.variant-B {
 }
 
 /* Estilo do logo Fatec */
-.logo-fatec.variant-B {
+.logo-fatec-index.variant-B {
   width: 50%; /* Diminui o tamanho do logo da Fatec */
   max-width: 100px; /* Define uma largura máxima */
   margin-top: 290px; /* Diminui a margem superior para subir o logo da Fatec */

@@ -1,104 +1,98 @@
-body.variant-A {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #EFEFEF;
-  }
-  
-  .perfil.variant-A {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #EFEFEF;
-  }
-  
-  .perfil-container.variant-A {
-    width: 100%; 
-    max-width: 700px;
-    min-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .perfil-header.variant-A {
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .perfil-avatar.variant-A {
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  .perfil-imagem.variant-A {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block; 
-    margin: 0 auto; 
-  }
-  
-  h1.variant-A {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .perfil-detalhes.variant-A {
-    max-width: 700px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: outset 6px 6px 12px rgba(0, 0, 0, 0.35);
-  }
-  
-  .campo.variant-A {
-    margin-bottom: 15px;
-  }
-  
-  .campo.variant-A label {
-    display: block;
-    margin-bottom: 5px;
-    color: #000000;
-  }
-  
-  .campo.variant-A p {
-    margin: 0;
-    font-size: 20px;
-  }
-  
-  .perfil-acoes.variant-A {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  button.variant-A {
-    width: 150px;
-    height: 60px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button.variant-A:active {
-    box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.50);
-  }
-  
-  .voltar.variant-A {
-    background-color: #525151;
-    color: #fff;
-  }
-  
-  .alterar.variant-A {
-    background-color: #525151;
-    color: #fff;
-  }
-  
-  .excluir.variant-A {
-    background-color: red;
-    color: #fff;
-  }
+ .perfil-perfil.variant-A {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   background-color: #EFEFEF;
+ }
+
+ .perfil-container-perfil.variant-A {
+   width: 100%;
+   max-width: 700px;
+   min-width: 400px;
+   margin: 0 auto;
+   padding: 20px;
+ }
+
+ .perfil-header-perfil.variant-A {
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .perfil-avatar-perfil.variant-A {
+   margin-bottom: 10px;
+   text-align: center;
+ }
+
+ .perfil-imagem-perfil.variant-A {
+   width: 150px;
+   height: 150px;
+   border-radius: 50%;
+   object-fit: cover;
+   display: block;
+   margin: 0 auto;
+ }
+
+ .perfil-header-perfil.variant-A h1 {
+   font-size: 24px;
+   margin-bottom: 20px;
+ }
+
+ .perfil-detalhes-perfil.variant-A {
+   max-width: 700px;
+   background-color: #f9f9f9;
+   padding: 20px;
+   margin-bottom: 20px;
+   box-shadow: outset 6px 6px 12px rgba(0, 0, 0, 0.35);
+ }
+
+ .campo-perfil.variant-A {
+   margin-bottom: 15px;
+ }
+
+ .campo-perfil.variant-A label {
+   display: block;
+   margin-bottom: 5px;
+   color: #000000;
+ }
+
+ .campo-perfil.variant-A p {
+   margin: 0;
+   font-size: 20px;
+ }
+
+ .perfil-acoes-perfil.variant-A {
+   display: flex;
+   justify-content: space-between;
+ }
+
+ .perfil-acoes-perfil.variant-A button {
+   width: 150px;
+   height: 60px;
+   padding: 10px 20px;
+   font-size: 16px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+
+ .perfil-acoes-perfil.variant-A button:active {
+   box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.50);
+ }
+
+ .voltar-perfil.variant-A {
+   background-color: #525151;
+   color: #fff;
+ }
+
+ .alterar-perfil.variant-A {
+   background-color: #525151;
+   color: #fff;
+ }
+
+ .excluir-perfil.variant-A {
+   background-color: red;
+   color: #fff;
+ }

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../../components/navbar/navbar';
-import Menu from '../../components/menu/menu';
 import './editar_perfil-varianteA.css';
 import './editar_perfil-varianteB.css';
+import Navbar from '../../components/navbar/navbar';
+import Menu from '../../components/menu/menu';
+import DefaultProfilePic from './../../assets/img/profile.png';
 
 function EditarPerfil() {
     const navigate = useNavigate();
@@ -11,7 +12,7 @@ function EditarPerfil() {
     const [isMotorista, setIsMotorista] = useState(false);
     const [formData, setFormData] = useState({
         nome: '',
-        imagemPerfil: '',
+        img_url: '',
         ra: '',
         email: '',
         curso: '',
@@ -45,6 +46,37 @@ function EditarPerfil() {
             document.head.removeChild(link);
             document.body.classList.remove(`variant-${randomVariant}`);
         };
+    }, []);
+
+    useEffect(() => {
+        // Recupera o ID do usuário do LocalStorage
+        const user = localStorage.getItem('user');
+        if (user) {
+            try {
+                const userId = JSON.parse(user)._id;
+
+                // Busca as informações do usuário no backend usando o ID
+                const fetchUserInfo = async () => {
+                    try {
+                        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/usuarios/usuario/${userId}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                        const data = await response.json();
+                        setFormData(data);
+                        setIsMotorista(data.tipo_usuario === 'MOTORISTA');
+                    } catch (error) {
+                        console.error('Erro ao encontrar dados do usuário:', error);
+                    }
+                };
+
+                fetchUserInfo();
+            } catch (error) {
+                console.error('Erro ao encontrar dados do usuário do localStorage:', error);
+            }
+        }
     }, []);
 
     const handleChange = (e) => {
@@ -97,27 +129,27 @@ function EditarPerfil() {
         }
         setErrors({});
         console.log('Form Data:', formData);
-
-        const { confirmSenha, ...dataToSubmit } = formData;
-
         try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/usuarios/editar_usuario/${data.id}`, {
-                method: 'POST',
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/usuarios/editar_usuario/${formData._id}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(dataToSubmit)
+                body: JSON.stringify(formData)
             });
             const data = await response.json();
             console.log('Success:', data);
+            setTimeout(() => {
+                navigate('/home');
+            }, 2000);
 
             if (selectedFile) {
-                const formData = new FormData();
-                formData.append('file', selectedFile);
+                const uploadFormData = new FormData();
+                uploadFormData.append('imagem', selectedFile); // Certifique-se de que o nome do campo corresponde ao esperado pelo backend
 
-                const uploadResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/usuarios/usuario/${data.id}/upload`, {
+                const uploadResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/usuarios/usuario/${formData._id}/upload`, {
                     method: 'POST',
-                    body: formData
+                    body: uploadFormData
                 });
                 const uploadData = await uploadResponse.json();
                 console.log('Upload Success:', uploadData);
@@ -125,7 +157,7 @@ function EditarPerfil() {
                 // Atualiza a URL da imagem de perfil no estado
                 setFormData((prevData) => ({
                     ...prevData,
-                    imagemPerfil: uploadData.url // Supondo que o backend retorne a URL da imagem no campo 'url'
+                    img_url: uploadData.img_url // Supondo que o backend retorne a URL da imagem no campo 'img_url'
                 }));
             }
         } catch (error) {
@@ -141,24 +173,34 @@ function EditarPerfil() {
         }));
     };
 
-    const handleProfile = () => {
-        navigate('/perfil');
-    };
-
     return (
         <>
             <Navbar />
-            <div className={`container variant-${variant}`}>
-                <img
-                    className={`imagem-perfil variant-${variant}`}
-                    src={formData.imagemPerfil || '/path/to/default-profile.png'}
-                    alt="Imagem de perfil do usuário"
-                />
+            <div className={`container-editar-perfil variant-${variant}`}>
+                <div className={`perfil-avatar-editar-perfil variant-${variant}`}>
+                    <img
+                        className={`perfil-imagem-editar-perfil variant-${variant}`}
+                        src={formData.img_url || DefaultProfilePic}
+                        alt="Imagem de perfil do usuário"
+                    />
+                    <div className={`input-container-editar-perfil variant-${variant}`}>
+                        <label htmlFor="imagem" className={`file-input-label variant-${variant}`}>
+                            Escolher Imagem
+                        </label>
+                        <input
+                            id="imagem"
+                            className={`file-input`}
+                            type="file"
+                            name="imagem"
+                            onChange={handleFileChange}
+                        />
+                    </div>
+                </div>
                 <form onSubmit={handleSubmit}>
-                    <div className={`input-container variant-${variant}`}>
+                    <div className={`input-container-editar-perfil variant-${variant}`}>
                         <i className="fas fa-user"></i>
                         <input
-                            className={`input-field variant-${variant}`}
+                            className={`input-field-editar-perfil variant-${variant}`}
                             type="text"
                             name="nome"
                             placeholder="Nome"
@@ -166,11 +208,11 @@ function EditarPerfil() {
                             onChange={handleChange}
                         />
                     </div>
-                    {errors.nome && <span className={`error variant-${variant}`}>{errors.nome}</span>}
-                    <div className={`input-container variant-${variant}`}>
+                    {errors.nome && <span className={`error-editar-perfil variant-${variant}`}>{errors.nome}</span>}
+                    <div className={`input-container-editar-perfil variant-${variant}`}>
                         <i className="fas fa-envelope"></i>
                         <input
-                            className={`input-field variant-${variant}`}
+                            className={`input-field-editar-perfil variant-${variant}`}
                             type="email"
                             name="email"
                             placeholder="E-mail Institucional"
@@ -178,11 +220,11 @@ function EditarPerfil() {
                             onChange={handleChange}
                         />
                     </div>
-                    {errors.email && <span className={`error variant-${variant}`}>{errors.email}</span>}
+                    {errors.email && <span className={`error-editar-perfil variant-${variant}`}>{errors.email}</span>}
                     <div className={`input-container variant-${variant}`}>
                         <i className="fas fa-lock"></i>
                         <input
-                            className={`input-field variant-${variant}`}
+                            className={`input-field-editar-perfil variant-${variant}`}
                             type="text"
                             name="ra"
                             placeholder="RA"
@@ -190,11 +232,11 @@ function EditarPerfil() {
                             onChange={handleChange}
                         />
                     </div>
-                    {errors.ra && <span className={`error variant-${variant}`}>{errors.ra}</span>}
-                    <div className={`input-container variant-${variant}`}>
+                    {errors.ra && <span className={`error-editar-perfil variant-${variant}`}>{errors.ra}</span>}
+                    <div className={`input-container-editar-perfil variant-${variant}`}>
                         <i className="fas fa-graduation-cap"></i>
                         <select
-                            className={`input-field-select variant-${variant}`}
+                            className={`input-field-select-editar-perfil variant-${variant}`}
                             name="curso"
                             value={formData.curso}
                             onChange={handleChange}>
@@ -207,12 +249,12 @@ function EditarPerfil() {
                             <option value="DP">DP - Design de Produto</option>
                         </select>
                     </div>
-                    {errors.curso && <span className={`error variant-${variant}`}>{errors.curso}</span>}
-                    <div className={`switch-container variant-${variant}`}>
+                    {errors.curso && <span className={`error-editar-perfil variant-${variant}`}>{errors.curso}</span>}
+                    <div className={`switch-container-editar-perfil variant-${variant}`}>
                         <button
                             type="button"
                             className={`switch-button variant-${variant} ${!isMotorista ? 'active' : ''}`}
-                            onClick={(e) => { e.preventDefault(); toggleSwitch('CARONA'); }}>
+                            onClick={(e) => { e.preventDefault(); toggleSwitch('PASSAGEIRO'); }}>
                             Carona
                         </button>
                         <button
@@ -224,10 +266,10 @@ function EditarPerfil() {
                     </div>
                     {isMotorista && (
                         <>
-                            <div className={`input-container variant-${variant}`}>
+                            <div className={`input-container-editar-perfil variant-${variant}`}>
                                 <i className="fas fa-car"></i>
                                 <input
-                                    className={`input-field variant-${variant}`}
+                                    className={`input-field-editar-perfil variant-${variant}`}
                                     type="text"
                                     name="veiculos.modelo"
                                     placeholder="Modelo do Veículo"
@@ -236,10 +278,10 @@ function EditarPerfil() {
                                 />
                             </div>
                             {errors.modelo && <span className={`error variant-${variant}`}>{errors.modelo}</span>}
-                            <div className={`input-container variant-${variant}`}>
+                            <div className={`input-container-editar-perfil variant-${variant}`}>
                                 <i className="fas fa-car-side"></i>
                                 <input
-                                    className={`input-field variant-${variant}`}
+                                    className={`input-field-editar-perfil variant-${variant}`}
                                     type="text"
                                     name="veiculos.placa"
                                     placeholder="Placa do Veículo"
@@ -247,11 +289,11 @@ function EditarPerfil() {
                                     onChange={handleChange}
                                 />
                             </div>
-                            {errors.placa && <span className={`error variant-${variant}`}>{errors.placa}</span>}
-                            <div className={`input-container variant-${variant}`}>
+                            {errors.placa && <span className={`error-editar-perfil variant-${variant}`}>{errors.placa}</span>}
+                            <div className={`input-container-editar-perfil variant-${variant}`}>
                                 <i className="fas fa-palette"></i>
                                 <input
-                                    className={`input-field variant-${variant}`}
+                                    className={`input-field-editar-perfil variant-${variant}`}
                                     type="text"
                                     name="veiculos.cor"
                                     placeholder="Cor do Veículo"
@@ -259,20 +301,12 @@ function EditarPerfil() {
                                     onChange={handleChange}
                                 />
                             </div>
-                            {errors.cor && <span className={`error variant-${variant}`}>{errors.cor}</span>}
+                            {errors.cor && <span className={`error-editar-perfil variant-${variant}`}>{errors.cor}</span>}
                         </>
                     )}
-                    <div className={`input-container variant-${variant}`}>
-                        <input
-                            className={`input-field variant-${variant}`}
-                            type="file"
-                            name="imagemPerfil"
-                            onChange={handleFileChange}
-                        />
-                    </div>
-                    <div className={`perfil-acoes variant-${variant}`}>
-                        <button className={`button-button-cadastro variant-${variant}`} onClick={() => navigate(-1)}>Voltar</button>
-                        <button type="submit" className={`button-button-cadastro variant-${variant}`} onClick={handleProfile}>
+                    <div className={`perfil-acoes-editar-perfil variant-${variant}`}>
+                        <button className={`button-button-editar-perfil variant-${variant}`} onClick={() => navigate(-1)}>Voltar</button>
+                        <button type="submit" className={`button-button-editar-perfil variant-${variant}`}>
                             Atualizar Perfil
                         </button>
                     </div>
