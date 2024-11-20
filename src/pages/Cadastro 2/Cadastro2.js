@@ -16,7 +16,7 @@ function CadastroAuth() {
 
     useEffect(() => {
         // Escolhe aleatoriamente entre 'A' e 'B'
-        const randomVariant = Math.random() < 0.5 ? 'A' : 'B';
+        const randomVariant = window.crypto.getRandomValues(new Uint32Array(1))[0] % 2 === 0 ? 'A' : 'B';
         setVariant(randomVariant);
 
         // Cria uma tag <link> para carregar o CSS apropriado
@@ -68,7 +68,7 @@ function CadastroAuth() {
         const newErrors = {};
         if (!formData.email) {
             newErrors.email = 'E-mail é obrigatório';
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             newErrors.email = 'E-mail inválido';
         } else if (!formData.email.endsWith('@fatec.sp.gov.br')) {
             newErrors.email = 'E-mail deve ser @fatec.sp.gov.br';

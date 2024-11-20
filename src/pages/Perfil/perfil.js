@@ -14,7 +14,7 @@ function Perfil() {
 
     useEffect(() => {
         // Escolhe aleatoriamente entre 'A' e 'B'
-        const randomVariant = Math.random() < 0.5 ? 'A' : 'B';
+        const randomVariant = window.crypto.getRandomValues(new Uint32Array(1))[0] % 2 === 0 ? 'A' : 'B';
         setVariant(randomVariant);
 
         // Cria uma tag <link> para carregar o CSS apropriado

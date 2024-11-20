@@ -43,6 +43,14 @@ describe('ListarViagens', () => {
                 ])
             })
         );
+        // Mock crypto.getRandomValues
+        if (!global.self.crypto) {
+        Object.defineProperty(global.self, 'crypto', {
+            value: {
+                getRandomValues: (arr) => arr.fill(0)
+            }
+        });
+        }
     });
 
     afterEach(() => {

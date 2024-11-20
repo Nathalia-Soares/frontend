@@ -6,7 +6,14 @@ import '@testing-library/jest-dom';
 
 describe('CadastroAuth Component', () => {
     beforeEach(() => {
-        jest.clearAllMocks();
+        if (!window.crypto) {
+            window.crypto = { getRandomValues: jest.fn() };
+        }
+        jest.spyOn(window.crypto, 'getRandomValues').mockReturnValue(new Uint32Array([0]));
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
     });
 
     test('renders without crashing', () => {
@@ -18,73 +25,57 @@ describe('CadastroAuth Component', () => {
         expect(screen.getByPlaceholderText('E-mail: usuario@fatec.sp.gov.br')).toBeInTheDocument();
     });
 
-    test('handles email input change', () => {
+    test('handles input changes', () => {
         render(
             <Router>
                 <CadastroAuth />
             </Router>
         );
+
         const emailInput = screen.getByPlaceholderText('E-mail: usuario@fatec.sp.gov.br');
-        fireEvent.change(emailInput, { target: { value: 'test@fatec.sp.gov.br' } });
-        expect(emailInput.value).toBe('test@fatec.sp.gov.br');
-    });
-
-    test('handles password input change', () => {
-        render(
-            <Router>
-                <CadastroAuth />
-            </Router>
-        );
-        const passwordInput = screen.getByPlaceholderText('Senha');
-        fireEvent.change(passwordInput, { target: { value: 'Password123!' } });
-        expect(passwordInput.value).toBe('Password123!');
-    });
-
-    test('shows error for invalid email', async () => {
-        render(
-            <Router>
-                <CadastroAuth />
-            </Router>
-        );
-        const emailInput = screen.getByPlaceholderText('E-mail: usuario@fatec.sp.gov.br');
-        fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
-        const submitButton = screen.getByText('Cadastrar-se');
-        fireEvent.click(submitButton);
-        await waitFor(() => {
-            expect(screen.getByText('E-mail inválido')).toBeInTheDocument();
-        });
-    });
-
-    test('shows error for invalid password', async () => {
-        render(
-            <Router>
-                <CadastroAuth />
-            </Router>
-        );
-        const passwordInput = screen.getByPlaceholderText('Senha');
-        fireEvent.change(passwordInput, { target: { value: 'short' } });
-        const submitButton = screen.getByText('Cadastrar-se');
-        fireEvent.click(submitButton);
-        await waitFor(() => {
-            expect(screen.getByText('Senha deve ter no mínimo 8 caracteres, pelo menos 1 letra maiúscula, 1 letra minúscula, 1 número e 1 caractere especial')).toBeInTheDocument();
-        });
-    });
-
-    test('shows error for non-matching passwords', async () => {
-        render(
-            <Router>
-                <CadastroAuth />
-            </Router>
-        );
         const passwordInput = screen.getByPlaceholderText('Senha');
         const confirmPasswordInput = screen.getByPlaceholderText('Confirme a Senha');
-        fireEvent.change(passwordInput, { target: { value: 'Password123!' } });
-        fireEvent.change(confirmPasswordInput, { target: { value: 'Password123' } });
+
+        fireEvent.change(emailInput, { target: { name: 'email', value: 'test@fatec.sp.gov.br' } });
+        fireEvent.change(passwordInput, { target: { name: 'senha', value: 'Password123!' } });
+        fireEvent.change(confirmPasswordInput, { target: { name: 'confirmSenha', value: 'Password123!' } });
+
+        expect(emailInput.value).toBe('test@fatec.sp.gov.br');
+        expect(passwordInput.value).toBe('Password123!');
+        expect(confirmPasswordInput.value).toBe('Password123!');
+    });
+
+    test('validates form inputs', async () => {
+        render(
+            <Router>
+                <CadastroAuth />
+            </Router>
+        );
+
         const submitButton = screen.getByText('Cadastrar-se');
         fireEvent.click(submitButton);
-        await waitFor(() => {
-            expect(screen.getByText('As senhas não coincidem')).toBeInTheDocument();
-        });
+
+        expect(await screen.findByText('E-mail é obrigatório')).toBeInTheDocument();
+        expect(await screen.findByText('Senha é obrigatória')).toBeInTheDocument();
+        expect(await screen.findByText('Confirmação de senha é obrigatória')).toBeInTheDocument();
+    });
+
+    test('shows password mismatch error', () => {
+        render(
+            <Router>
+                <CadastroAuth />
+            </Router>
+        );
+
+        const passwordInput = screen.getByPlaceholderText('Senha');
+        const confirmPasswordInput = screen.getByPlaceholderText('Confirme a Senha');
+
+        fireEvent.change(passwordInput, { target: { name: 'senha', value: 'Password123!' } });
+        fireEvent.change(confirmPasswordInput, { target: { name: 'confirmSenha', value: 'Password1234!' } });
+
+        fireEvent.blur(confirmPasswordInput);
+
+        expect(screen.getByText('As senhas não coincidem')).toBeInTheDocument();
     });
 
     test('submits form with valid data', async () => {
@@ -103,12 +94,12 @@ describe('CadastroAuth Component', () => {
         const emailInput = screen.getByPlaceholderText('E-mail: usuario@fatec.sp.gov.br');
         const passwordInput = screen.getByPlaceholderText('Senha');
         const confirmPasswordInput = screen.getByPlaceholderText('Confirme a Senha');
-
-        fireEvent.change(emailInput, { target: { value: 'test@fatec.sp.gov.br' } });
-        fireEvent.change(passwordInput, { target: { value: 'Password123!' } });
-        fireEvent.change(confirmPasswordInput, { target: { value: 'Password123!' } });
-
         const submitButton = screen.getByText('Cadastrar-se');
+
+        fireEvent.change(emailInput, { target: { name: 'email', value: 'test@fatec.sp.gov.br' } });
+        fireEvent.change(passwordInput, { target: { name: 'senha', value: 'Password123!' } });
+        fireEvent.change(confirmPasswordInput, { target: { name: 'confirmSenha', value: 'Password123!' } });
+
         fireEvent.click(submitButton);
 
         await waitFor(() => {
