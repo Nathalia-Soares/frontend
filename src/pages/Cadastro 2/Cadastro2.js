@@ -68,7 +68,7 @@ function CadastroAuth() {
         const newErrors = {};
         if (!formData.email) {
             newErrors.email = 'E-mail é obrigatório';
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
             newErrors.email = 'E-mail inválido';
         } else if (!formData.email.endsWith('@fatec.sp.gov.br')) {
             newErrors.email = 'E-mail deve ser @fatec.sp.gov.br';
