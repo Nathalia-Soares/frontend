@@ -82,7 +82,7 @@ function EditarPerfil() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name.startsWith('veiculos')) {
-            const [_, key] = name.split('.');
+            const [key] = name.split('.');
             setFormData((prevData) => ({
                 ...prevData,
                 veiculos: [{ ...prevData.veiculos[0], [key]: value }]
