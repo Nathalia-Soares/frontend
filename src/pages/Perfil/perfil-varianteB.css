@@ -6,6 +6,7 @@
    height: 100vh;
    background-color: #4D4D4D;
    color: #FFFFFF;
+   padding: 50px;
  }
 
  .perfil-container-perfil.variant-B {
@@ -14,6 +15,8 @@
    min-width: 400px;
    margin: 0 auto;
    padding: 20px;
+   margin-top: 80px;
+   margin-bottom: 100px;
  }
 
  .perfil-header-perfil.variant-B {

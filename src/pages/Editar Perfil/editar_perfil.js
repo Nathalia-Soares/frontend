@@ -82,7 +82,7 @@ function EditarPerfil() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name.startsWith('veiculos')) {
-            const [key] = name.split('.');
+            const key = name.split('.')[1];
             setFormData((prevData) => ({
                 ...prevData,
                 veiculos: [{ ...prevData.veiculos[0], [key]: value }]
@@ -175,8 +175,8 @@ function EditarPerfil() {
 
     return (
         <>
-            <Navbar />
-            <div className={`container-editar-perfil variant-${variant}`}>
+        <Navbar />
+            <div className={`editar-perfil variant-${variant}`}>
                 <div className={`perfil-avatar-editar-perfil variant-${variant}`}>
                     <img
                         className={`perfil-imagem-editar-perfil variant-${variant}`}
