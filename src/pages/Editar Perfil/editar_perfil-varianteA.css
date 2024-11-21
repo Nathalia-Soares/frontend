@@ -1,11 +1,11 @@
 /* Estilo do container principal */
-.container-editar-perfil.variant-A {
+.editar-perfil.variant-A {
   min-width: 400px;
   /* Define a largura máxima do container */
   max-width: 1000px;
   margin: 0 auto;
   /* Centraliza horizontalmente */
-  padding: 20px;
+  padding: 120px;
   /* Espaçamento interno */
   height: 100vh;
   /* Ocupa toda a altura da tela */
@@ -19,7 +19,7 @@
   /* Cor de fundo */
 }
 
-.container-editar-perfil form {
+.editar-perfil form {
   display: flex;
   align-items: center;
   justify-content: center;
