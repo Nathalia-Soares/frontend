@@ -5,6 +5,7 @@
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 80px;
     height: 100vh; /* O container ocupa toda a altura da tela */
     display: flex;
     flex-direction: column;
@@ -129,7 +130,7 @@
 }
 
 /* Estilo da lista de motoristas */
-.motorista-list-home.variant-B {
+.user-list-home.variant-B {
     width: 100%;
     margin-top: 0px;
     display: flex;
@@ -141,7 +142,7 @@
     padding-top: 10px;
 }
 
-.motorista-item-home.variant-B {
+.user-item-home.variant-B {
     display: flex;
     align-items: center;
     background-color: #255362;
@@ -154,14 +155,14 @@
 }
 
 /* Espaçamento para separar a imagem do texto */
-.motorista-info-home.variant-B {
+.user-info-home.variant-B {
     padding-left: 20px;
     line-height: 40%;  
     color: #fff;  
 }
 
 /* Estilo da moldura para as imagens dos motoristas */
-.motorista-img-home.variant-B {
+.user-img-home.variant-B {
     width: 100px; /* A imagem ocupa 1/3 do cartão */
     height: 100%; /* A altura da imagem é igual à altura do cartão */
     object-fit: cover; /* Mantém a proporção da imagem sem distorcer */
