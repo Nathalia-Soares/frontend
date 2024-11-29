@@ -1,67 +1,102 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Home from '../../pages/Home/Home';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import fetchMock from 'jest-fetch-mock';
+
+fetchMock.enableMocks();
 
 describe('Home Component', () => {
-    test('renders the Home component', () => {
-        render(
-            <Router>
-                <Home />
-            </Router>
-        );
-        const greetingElement = screen.getByText(/Bom dia, Pedro/i);
-        expect(greetingElement).toBeInTheDocument();
+    beforeEach(() => {
+        fetch.resetMocks();
+        localStorage.clear();
     });
 
-    test('renders the logo image', () => {
+    test('sets variant class on body', () => {
         render(
-            <Router>
+            <BrowserRouter>
                 <Home />
-            </Router>
+            </BrowserRouter>
         );
-        const logoElement = screen.getByAltText(/Logo Rachaí/i);
-        expect(logoElement).toBeInTheDocument();
+        const variantClass = document.body.className;
+        expect(variantClass).toMatch(/variant-(A|B)/);
     });
 
-    test('renders the scheduled rides section', () => {
+    test('fetches and displays user info from localStorage', async () => {
+        const user = { nome: 'John Doe', tipo_usuario: 'PASSAGEIRO' };
+        localStorage.setItem('user', JSON.stringify(user));
+
+        fetch.mockResponseOnce(JSON.stringify([]));
+
         render(
-            <Router>
+            <BrowserRouter>
                 <Home />
-            </Router>
+            </BrowserRouter>
         );
-        const scheduledRidesElement = screen.getByText(/Suas Caronas Agendadas/i);
-        expect(scheduledRidesElement).toBeInTheDocument();
+
+        await waitFor(() => {
+            expect(screen.getByText(/John Doe/i)).toBeInTheDocument();
+        });
     });
 
-    test('renders the ride card with driver details', () => {
+    test('fetches motoristas for PASSAGEIRO user', async () => {
+        const user = { nome: 'John Doe', tipo_usuario: 'PASSAGEIRO' };
+        localStorage.setItem('user', JSON.stringify(user));
+
+        const motoristas = [{ _id: '1', nome: 'Ana', curso: 'Engenharia', veiculos: [{ modelo: 'Carro' }] }];
+        fetch.mockResponseOnce(JSON.stringify(motoristas));
+
         render(
-            <Router>
+            <BrowserRouter>
                 <Home />
-            </Router>
+            </BrowserRouter>
         );
-        const driverNameElements = screen.getAllByText(/Ana, 30/i);
-        expect(driverNameElements.length).toBeGreaterThan(0);
+
+        await waitFor(() => {
+            expect(screen.getByText(/Ana/i)).toBeInTheDocument();
+        });
     });
 
-    test('renders the ride location', () => {
+    test('sets greeting based on morning time', () => {
+        const mockDate = new Date(2023, 10, 10, 8); // 08:00
+        jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
+
         render(
-            <Router>
+            <BrowserRouter>
                 <Home />
-            </Router>
+            </BrowserRouter>
         );
-        const rideLocationElement = screen.getByText(/Atacadão Cotia/i);
-        expect(rideLocationElement).toBeInTheDocument();
+        expect(screen.getByText(/Bom dia/i)).toBeInTheDocument();
+
+        jest.restoreAllMocks();
     });
 
-    test('renders the Navbar component', () => {
+    test('sets greeting based on afternoon time', () => {
+        const mockDate = new Date(2023, 10, 10, 15); // 15:00
+        jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
+
         render(
-            <Router>
+            <BrowserRouter>
                 <Home />
-            </Router>
+            </BrowserRouter>
         );
-        const navbarElement = screen.getByRole('navigation');
-        expect(navbarElement).toBeInTheDocument();
+        expect(screen.getByText(/Boa tarde/i)).toBeInTheDocument();
+
+        jest.restoreAllMocks();
+    });
+
+    test('sets greeting based on evening time', () => {
+        const mockDate = new Date(2023, 10, 10, 20); // 20:00
+        jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
+
+        render(
+            <BrowserRouter>
+                <Home />
+            </BrowserRouter>
+        );
+        expect(screen.getByText(/Boa noite/i)).toBeInTheDocument();
+
+        jest.restoreAllMocks();
     });
 });

@@ -1,0 +1,187 @@
+ /* Estilo do container principal */
+ .editar-perfil.variant-B {
+   min-width: 400px;
+   /* Define a largura máxima do container */
+   max-width: 1000px;
+   margin: 0 auto;
+   /* Centraliza horizontalmente */
+   padding: 120px;
+   /* Espaçamento interno */
+   height: 100vh;
+   /* Ocupa toda a altura da tela */
+   display: flex;
+   flex-direction: column;
+   /* Alinha elementos em coluna */
+   align-items: center;
+   /* Centraliza horizontalmente */
+   justify-content: center;
+   background-color: #4D4D4D;
+   /* Cor de fundo */
+ }
+
+ .editar-perfil form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  /* Largura total do formulário */
+  margin: 0;
+  /* Centraliza horizontalmente */
+  padding: 20px;
+  /* Espaçamento interno */
+}
+
+ .perfil-avatar-editar-perfil {
+   margin-bottom: 10px;
+   text-align: center;
+ }
+
+ .perfil-imagem-editar-perfil {
+   width: 150px;
+   height: 150px;
+   border-radius: 50%;
+   object-fit: cover;
+   display: block;
+   margin: 0 auto;
+ }
+
+ .input-container-editar-perfil.variant-B {
+   position: relative;
+   width: 100%;
+   margin: 10px 0;
+ }
+
+ .input-container-editar-perfil.variant-B i {
+   position: absolute;
+   left: 10px;
+   top: 50%;
+   transform: translateY(-50%);
+   color: #255362;
+ }
+
+ .input-field-editar-perfil.variant-B {
+   width: 100%;
+   /* Garante que a caixa de texto ocupe 100% do container */
+   height: 40px;
+   /* Altura consistente para todos os campos */
+   margin: 10px 0;
+   /* Margem entre os campos */
+   padding: 0 10px 0 40px;
+   /* Padding interno */
+   border: 1px solid #ccc;
+   /* Borda padrão */
+   border-radius: 5px;
+   /* Bordas arredondadas */
+   font-family: 'Poppins', sans-serif;
+   /* Fonte Poppins */
+ }
+
+ .input-field-select-editar-perfil.variant-B {
+   width: 105%;
+   /* Garante que a caixa de texto ocupe 100% do container */
+   height: 40px;
+   /* Altura consistente para todos os campos */
+   margin: 10px 0;
+   /* Margem entre os campos */
+   padding: 0 10px 0 40px;
+   /* Padding interno */
+   border: 1px solid #ccc;
+   /* Borda padrão */
+   border-radius: 5px;
+   /* Bordas arredondadas */
+   font-family: 'Poppins', sans-serif;
+   /* Fonte Poppins */
+ }
+
+ /* Estilo do switch container */
+ .switch-container-editar-perfil.variant-B {
+   display: flex;
+   /* Flexbox para alinhamento horizontal */
+   width: 100%;
+   /* Largura total */
+   margin-bottom: 10px;
+   /* Margem abaixo do switch */
+ }
+
+ /* Estilo do botão Cadastrar-se */
+ .button-button-editar-perfil.variant-B {
+   width: 150px;
+   /* Largura total */
+   height: 60px;
+   /* Altura do botão */
+   border: none;
+   /* Remove bordas padrão */
+   border-radius: 5px;
+   /* Bordas arredondadas */
+   cursor: pointer;
+   /* Cursor de pointer ao passar sobre o botão */
+   font-size: 16px;
+   /* Tamanho da fonte */
+   color: white;
+   /* Cor do texto */
+   background-color: #255362;
+   /* Cor do botão de cadastro */
+   margin-top: 30px;
+   /* Margem acima do botão */
+   margin: 50px;
+   padding: 10px;
+   align-self: center;
+ }
+
+ /* Hover do botão Cadastrar-se */
+ .button-button-editar-perfil.variant-B:hover {
+   background-color: #1b3b46;
+   /* Tom mais escuro para hover */
+ }
+
+ .perfil-acoes-editar-perfil.variant-B.variant-B {
+   display: flex;
+   justify-content: space-between;
+ }
+
+ /* Estilo do logo Rachaí */
+ .logo-rachai1-editar-perfil.variant-B.variant-B {
+   width: 300px;
+   /* Largura reduzida para 30% */
+   max-width: 200px;
+   /* Largura máxima reduzida para 100px */
+   margin-top: 20px;
+   /* Espaço acima do logo */
+   margin-bottom: 50px;
+   /* Mantém a margem abaixo do logo para aproximar dos botões */
+   display: block;
+   /* Garante que a imagem seja um bloco */
+   object-fit: contain;
+   /* Faz com que a imagem mantenha suas proporções */
+   padding-bottom: 500 px;
+ }
+
+ .error-editar-perfil.variant-B.variant-B {
+   color: white;
+   /* Cor vermelha para mensagens de erro */
+   font-size: 14px;
+   /* Tamanho da fonte */
+   margin-top: 5px;
+   /* Margem acima do texto */
+ }
+
+ .file-input {
+   display: none;
+   text-align: center;
+ }
+
+ .file-input-label.variant-B {
+   display: inline-block;
+   padding: 10px 20px;
+   background-color: #255362;
+   color: #fff;
+   border-radius: 5px;
+   cursor: pointer;
+   margin-top: 10px;
+   text-align: center;
+ }
+
+ .file-input-label.variant-B:hover {
+   background-color: #162e36;
+ }

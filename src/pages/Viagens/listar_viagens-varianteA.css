@@ -1,0 +1,84 @@
+/* Estilo do container principal */
+.container-listar-viagens.variant-A {
+    min-width: 400px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+/* Estilo da lista de viagens */
+.viagens-list-listar-viagens.variant-A {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #CF080F;
+    padding-top: 10px;
+}
+
+/* Estilo de cada item de viagem */
+.viagem-item-listar-viagens.variant-A {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo das informações da viagem */
+.viagem-info-listar-viagens.variant-A {
+    width: 90%;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 1.5;
+}
+
+/* Estilo dos detalhes da viagem */
+.viagem-detalhes-listar-viagens.variant-A {
+    width: 95%;
+    border-top: 1px solid #ddd;
+    padding: 10px 10px;
+    margin: 10px 10px;
+}
+
+.viagem-info-listar-viagens.variant-A {
+    padding-left: 20px;
+    line-height: 1.5;
+}
+
+.btn-listar-viagens.variant-A {
+    background-color: #CF080F;
+    color: #fff;
+    border: none;
+    padding: 20px 80px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    float: right;
+
+}
+
+.btn-listar-viagens.variant-A:active {
+    box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.50);
+}
+
+.viagem-detalhes-listar-viagens.variant-A h4 {
+    margin: 10px 0;
+    color: #CF080F;
+}
+
+.viagem-detalhes-listar-viagens.variant-A p {
+    margin: 5px 0;
+}
